@@ -9,3 +9,4 @@ format_macro_bodies = false
 imports_layout = "HorizontalVertical"
 group_imports = "StdExternalCrate"
 imports_granularity = "One"
+edition = "2021"
