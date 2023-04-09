@@ -26,7 +26,17 @@ pub fn disassembly_test()
 
     assert_eq!(data.len(), 320);
 
-    let decoder = decoder(Architecture::Arm64);
+    let mut decoder = decoder(Architecture::Arm64, Mode::Strict);
 
-    let result = decoder.decode(&data, Mode::Strict);
+    let _result = decoder.decode(&data);
+}
+
+#[test]
+pub fn disassembly_error1()
+{
+    let not_full_instruction = vec![1, 2, 3];
+
+    let mut decoder = decoder(Architecture::Arm64, Mode::Strict);
+
+    assert!(decoder.decode(&not_full_instruction).is_err());
 }
