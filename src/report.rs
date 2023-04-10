@@ -14,6 +14,7 @@ pub enum ReportType
     UnallocatedOpcode,
     UnmatchedOpcode,
     IncompleteInstruction,
+    ProcessingError,
 }
 
 pub struct Report
@@ -31,6 +32,16 @@ impl Default for Position
             byte_offset: 0,
             instruction_offset: 0,
         }
+    }
+}
+
+impl std::fmt::Debug for Report
+{
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result
+    {
+        writeln!(f, "Description: {}", self.description)?;
+        writeln!(f, "Byte Offset: {}", self.position.byte_offset)?;
+        writeln!(f, "Instruction: {}", self.position.instruction_offset)
     }
 }
 

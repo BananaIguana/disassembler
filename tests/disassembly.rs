@@ -3,6 +3,7 @@ use {
         arch::Architecture,
         decoder::{decoder, Decoder},
         mode::Mode,
+        report::Report,
     },
     std::io::Read,
 };
@@ -20,7 +21,7 @@ pub fn load_sample(index: usize) -> Vec<u8>
 }
 
 #[test]
-pub fn disassembly_test()
+pub fn disassembly_test() -> Result<(), Report>
 {
     let data = load_sample(1);
 
@@ -28,7 +29,11 @@ pub fn disassembly_test()
 
     let mut decoder = decoder(Architecture::Arm64, Mode::Strict);
 
-    let _result = decoder.decode(&data);
+    let result = decoder.decode(&data)?;
+
+    println!("{:?}", result);
+
+    Ok(())
 }
 
 #[test]
