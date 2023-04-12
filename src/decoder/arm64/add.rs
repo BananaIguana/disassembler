@@ -14,6 +14,8 @@ pub struct ADD
     update_flags: bool,
 }
 
+// https://developer.arm.com/documentation/ddi0602/2022-12/Base-Instructions/ADD--immediate---Add--immediate--?lang=en
+
 impl From<u32> for ADD
 {
     fn from(instruction: u32) -> Self
@@ -25,6 +27,7 @@ impl From<u32> for ADD
         let imm = (instruction & 0x3FFC00) >> 10;
 
         let is_64bit = sf != 0;
+        debug_assert_eq!(is_64bit, true); // needs checking
 
         // op must be unset if the operation is any ADD variant.
         debug_assert_eq!(op, 0);
