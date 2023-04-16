@@ -45,9 +45,9 @@ impl From<u32> for STP
         };
 
         let opc = instruction & 0x80000000;
-        let rt = instruction & 0x1F;
-        let rn = (instruction & 0x3E0) >> 5;
-        let rt2 = (instruction & 0x7C00) >> 10;
+        let rt = (instruction & 0x1F) as u64;
+        let rn = ((instruction & 0x3E0) >> 5) as u64;
+        let rt2 = ((instruction & 0x7C00) >> 10) as u64;
         let imm = (instruction & 0x3F8000) >> 15;
 
         let is_64bit = opc != 0;

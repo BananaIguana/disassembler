@@ -3,6 +3,7 @@ use std::fmt::Formatter;
 #[allow(non_camel_case_types)]
 pub enum Register
 {
+    // 64-bit
     x0,
     x1,
     x2,
@@ -35,11 +36,45 @@ pub enum Register
     x29,
     x30,
     SP,
+
+    // 32-bit
+    w0,
+    w1,
+    w2,
+    w3,
+    w4,
+    w5,
+    w6,
+    w7,
+    w8,
+    w9,
+    w10,
+    w11,
+    w12,
+    w13,
+    w14,
+    w15,
+    w16,
+    w17,
+    w18,
+    w19,
+    w20,
+    w21,
+    w22,
+    w23,
+    w24,
+    w25,
+    w26,
+    w27,
+    w28,
+    w29,
+    w30,
+    WZR,
 }
 
-impl From<u32> for Register
+impl From<u64> for Register
 {
-    fn from(value: u32) -> Self
+    fn from(value: u64) -> Self
     {
         match value
         {
@@ -80,12 +115,56 @@ impl From<u32> for Register
     }
 }
 
+impl From<u32> for Register
+{
+    fn from(value: u32) -> Self
+    {
+        match value
+        {
+            0 => Register::w0,
+            1 => Register::w1,
+            2 => Register::w2,
+            3 => Register::w3,
+            4 => Register::w4,
+            5 => Register::w5,
+            6 => Register::w6,
+            7 => Register::w7,
+            8 => Register::w8,
+            9 => Register::w9,
+            10 => Register::w10,
+            11 => Register::w11,
+            12 => Register::w12,
+            13 => Register::w13,
+            14 => Register::w14,
+            15 => Register::w15,
+            16 => Register::w16,
+            17 => Register::w17,
+            18 => Register::w18,
+            19 => Register::w19,
+            20 => Register::w20,
+            21 => Register::w21,
+            22 => Register::w22,
+            23 => Register::w23,
+            24 => Register::w24,
+            25 => Register::w25,
+            26 => Register::w26,
+            27 => Register::w27,
+            28 => Register::w28,
+            29 => Register::w29,
+            30 => Register::w30,
+            31 => Register::WZR,
+            _ => panic!("Unhandled"),
+        }
+    }
+}
+
 impl std::fmt::Display for Register
 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result
     {
         let str = match self
         {
+            // 64-bit
             Register::x0 => "x0",
             Register::x1 => "x1",
             Register::x2 => "x2",
@@ -118,6 +197,40 @@ impl std::fmt::Display for Register
             Register::x29 => "x29",
             Register::x30 => "x30",
             Register::SP => "sp",
+
+            // 32-bit
+            Register::w0 => "w0",
+            Register::w1 => "w1",
+            Register::w2 => "w2",
+            Register::w3 => "w3",
+            Register::w4 => "w4",
+            Register::w5 => "w5",
+            Register::w6 => "w6",
+            Register::w7 => "w7",
+            Register::w8 => "w8",
+            Register::w9 => "w9",
+            Register::w10 => "w10",
+            Register::w11 => "w11",
+            Register::w12 => "w12",
+            Register::w13 => "w13",
+            Register::w14 => "w14",
+            Register::w15 => "w15",
+            Register::w16 => "w16",
+            Register::w17 => "w17",
+            Register::w18 => "w18",
+            Register::w19 => "w19",
+            Register::w20 => "w20",
+            Register::w21 => "w21",
+            Register::w22 => "w22",
+            Register::w23 => "w23",
+            Register::w24 => "w24",
+            Register::w25 => "w25",
+            Register::w26 => "w26",
+            Register::w27 => "w27",
+            Register::w28 => "w28",
+            Register::w29 => "w29",
+            Register::w30 => "w30",
+            Register::WZR => "wzr",
         };
 
         write!(f, "{}", str)

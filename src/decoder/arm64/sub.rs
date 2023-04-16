@@ -28,8 +28,8 @@ impl From<u32> for SUB
         // op must be set if the operation is any SUB variant.
         debug_assert_eq!(op, 1);
 
-        let rd = instruction & 0x1F;
-        let rn = (instruction & 0x3E0) >> 5;
+        let rd = (instruction & 0x1F) as u64;
+        let rn = ((instruction & 0x3E0) >> 5) as u64;
 
         SUB {
             destination: rd.into(),
