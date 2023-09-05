@@ -1,6 +1,7 @@
 use std::fmt::Formatter;
 
 #[allow(non_camel_case_types)]
+#[allow(clippy::upper_case_acronyms)]
 pub enum Register
 {
     // 64-bit

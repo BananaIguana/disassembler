@@ -5,6 +5,7 @@ use {crate::decoder::register::Register, register_bits::prelude::*, std::fmt::Fo
 ///
 /// This instruction is used by the alias MOV (to/from SP).
 
+#[allow(dead_code)]
 pub enum Type
 {
     PreIndex,
@@ -12,6 +13,8 @@ pub enum Type
     SignedOffset,
 }
 
+#[allow(dead_code)]
+#[allow(clippy::upper_case_acronyms)]
 pub struct STP
 {
     source1: Register,
@@ -26,6 +29,7 @@ pub struct STP
 
 impl From<u32> for STP
 {
+    #[allow(clippy::if_same_then_else)]
     fn from(instruction: u32) -> Self
     {
         let stp_type = if (instruction & 0x28800000) == 0x28800000

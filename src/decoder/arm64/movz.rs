@@ -1,5 +1,7 @@
 use {crate::decoder::register::Register, std::fmt::Formatter};
 
+#[allow(dead_code)]
+#[allow(clippy::upper_case_acronyms)]
 pub struct MOVZ
 {
     is_64bit: bool,
@@ -21,7 +23,7 @@ impl From<u32> for MOVZ
         let rd = instruction & 0x1F;
         let hw = (instruction & 0x600000) >> 21;
 
-        let register: Register = if ((hw & 0b10) == 0) && (sf == false)
+        let register: Register = if ((hw & 0b10) == 0) && !sf
         {
             rd.into()
         }
@@ -48,7 +50,7 @@ impl std::fmt::Display for MOVZ
         if self.shift != 0
         {
             panic!("Check this.");
-            write!(f, "LSL #{:#X}", self.shift)?;
+            // write!(f, "LSL #{:#X}", self.shift)?;
         }
 
         Ok(())

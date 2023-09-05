@@ -5,6 +5,8 @@ use {crate::decoder::register::Register, std::fmt::Formatter};
 ///
 /// This instruction is used by the alias MOV (to/from SP).
 
+#[allow(clippy::bool_assert_comparison)]
+#[allow(clippy::upper_case_acronyms)]
 pub struct ADD
 {
     destination: Register,
@@ -27,7 +29,7 @@ impl From<u32> for ADD
         let imm = (instruction & 0x3FFC00) >> 10;
 
         let is_64bit = sf != 0;
-        debug_assert_eq!(is_64bit, true); // needs checking
+        debug_assert!(is_64bit); // needs checking
 
         // op must be unset if the operation is any ADD variant.
         debug_assert_eq!(op, 0);

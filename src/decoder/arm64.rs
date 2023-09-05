@@ -55,16 +55,17 @@ impl Arm64Decoder
         {
             ErrorKind::UnexpectedEof => Report {
                 description: "EOF is not 4-byte aligned.".to_string(),
-                position: self.position.clone(),
+                position: self.position,
                 report_type: ReportType::IncompleteInstruction,
             },
             _ => panic!("Unhandled `ErrorKind`"),
         })
     }
 
+    #[allow(dead_code)]
     fn report_from_type(&mut self, report_type: ReportType) -> Result<(), Report>
     {
-        let position = self.position.clone();
+        let position = self.position;
 
         macro_rules! process_type {
             ($str:expr) => {

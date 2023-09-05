@@ -3,6 +3,7 @@ use {crate::decoder::register::Register, std::fmt::Formatter};
 /// Subtract (immediate) subtracts an optionally-shifted immediate value from a register value, and
 /// writes the result to the destination register.
 
+#[allow(clippy::upper_case_acronyms)]
 pub struct SUB
 {
     destination: Register,
@@ -23,7 +24,7 @@ impl From<u32> for SUB
         let imm = (instruction & 0x3FFC00) >> 10;
 
         let is_64bit = sf != 0;
-        debug_assert_eq!(is_64bit, true); // needs checking
+        debug_assert!(is_64bit); // needs checking
 
         // op must be set if the operation is any SUB variant.
         debug_assert_eq!(op, 1);

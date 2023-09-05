@@ -9,6 +9,7 @@ use {
 /// result to the destination register.
 /// https://developer.arm.com/documentation/ddi0596/2021-12/Base-Instructions/ADRP--Form-PC-relative-address-to-4KB-page-?lang=en
 
+#[allow(clippy::upper_case_acronyms)]
 pub struct ADRP
 {
     register: Register,

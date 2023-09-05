@@ -1,5 +1,7 @@
 use {crate::decoder::register::Register, std::fmt::Formatter};
 
+#[allow(dead_code)]
+#[allow(clippy::upper_case_acronyms)]
 pub struct STR
 {
     is_64bit: bool,
@@ -24,9 +26,9 @@ impl From<u32> for STR
 
         let rt: Register = if is_64bit { (rt as u64).into() } else { rt.into() };
         let rn: Register = (rn as u64).into();
-        let rm: Register = if (option & 0x4) != 0 { (rm as u64).into() } else { rm.into() };
+        let _rm: Register = if (option & 0x4) != 0 { (rm as u64).into() } else { rm.into() };
 
-        let shift = if is_64bit { s * 2 } else { s * 3 };
+        let _shift = if is_64bit { s * 2 } else { s * 3 };
 
         Self {
             is_64bit,

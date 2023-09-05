@@ -4,6 +4,8 @@ use {
     std::fmt::Formatter,
 };
 
+#[allow(dead_code)]
+#[allow(clippy::upper_case_acronyms)]
 pub struct STUR
 {
     is_64bit: bool,

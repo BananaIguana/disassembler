@@ -7,6 +7,7 @@ use {
 /// Form PC-relative address adds an immediate value to the PC value to form a PC-relative
 /// address, and writes the result to the destination register.
 
+#[allow(clippy::upper_case_acronyms)]
 pub struct ADR
 {
     register: Register,

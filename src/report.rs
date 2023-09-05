@@ -1,6 +1,6 @@
 use std::fmt::Formatter;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub struct Position
 {
     pub byte_offset: usize,
@@ -22,17 +22,6 @@ pub struct Report
     pub description: String,
     pub position: Position,
     pub report_type: ReportType,
-}
-
-impl Default for Position
-{
-    fn default() -> Self
-    {
-        Self {
-            byte_offset: 0,
-            instruction_offset: 0,
-        }
-    }
 }
 
 impl std::fmt::Debug for Report
