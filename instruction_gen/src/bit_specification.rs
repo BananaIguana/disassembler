@@ -8,4 +8,10 @@ pub enum BitSpecification
         start: u32,
         end: u32,
     },
+    Mask
+    {
+        pattern: String,
+        mask: u32,
+        check: u32,
+    },
 }
