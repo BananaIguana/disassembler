@@ -1,6 +1,8 @@
 pub mod add;
+pub mod add_alt;
 pub mod adr;
 pub mod adrp;
+mod generator;
 pub mod movz;
 pub mod stp;
 pub mod str;

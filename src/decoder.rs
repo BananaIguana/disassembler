@@ -1,4 +1,4 @@
-mod arm64;
+pub mod arm64;
 mod instruction;
 mod register;
 
