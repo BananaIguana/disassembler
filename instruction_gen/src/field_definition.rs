@@ -6,9 +6,6 @@ use {
         LitStr,
         Token,
         parse::{Parse, ParseStream, Result},
-        parse_macro_input,
-        punctuated::Punctuated,
-        token::Comma,
     },
 };
 

@@ -1,5 +1,7 @@
 use {crate::decoder::register::Register, instruction_gen::make_instruction};
 
+// https://developer.arm.com/documentation/ddi0602/2022-12/Base-Instructions/ADD--immediate---Add--immediate--?lang=en
+
 make_instruction!(
     ADD_ALT,
     check = "?00100010???????????????????????",

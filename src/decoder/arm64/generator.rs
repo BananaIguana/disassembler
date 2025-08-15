@@ -58,5 +58,5 @@ macro_rules! make_arm64_instruction {
                 }
             }
         }
-    }
+    };
 }
