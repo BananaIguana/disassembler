@@ -1,5 +1,15 @@
 use {
-    crate::decoder::arm64::{add::ADD, adr::ADR, adrp::ADRP, movz::MOVZ, stp::STP, str::STR, stur::STUR, sub::SUB},
+    crate::decoder::arm64::{
+        add::ADD,
+        add_alt::ADD_ALT,
+        adr::ADR,
+        adrp::ADRP,
+        movz::MOVZ,
+        stp::STP,
+        str::STR,
+        stur::STUR,
+        sub::SUB,
+    },
     std::fmt::Formatter,
 };
 
@@ -15,6 +25,8 @@ pub enum Instruction
     MOVZ(MOVZ),
     STR(STR),
     STUR(STUR),
+    //
+    ADD_ALT(ADD_ALT),
 
     //
     Placeholder,
@@ -27,6 +39,7 @@ impl std::fmt::Display for Instruction
         match self
         {
             Instruction::ADD(add) => write!(f, "{}", add),
+            Instruction::ADD_ALT(add) => write!(f, "{}", add),
             Instruction::ADR(adr) => write!(f, "{}", adr),
             Instruction::ADRP(adrp) => write!(f, "{}", adrp),
             Instruction::SUB(sub) => write!(f, "{}", sub),

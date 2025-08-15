@@ -39,13 +39,20 @@ impl Parse for FieldDefinition
             let mut check_val = 0u32;
             for (i, c) in pattern.chars().enumerate()
             {
-                if c != '*'
+                match c
                 {
-                    mask_val |= 1 << (31 - i);
-                    if c == '1'
+                    '0' =>
                     {
+                        mask_val |= 1 << (31 - i);
+                    }
+                    '1' =>
+                    {
+                        mask_val |= 1 << (31 - i);
                         check_val |= 1 << (31 - i);
                     }
+                    '?' =>
+                    {}
+                    _ => return Err(input.error("mask pattern must contain only '0', '1', or '?'")),
                 }
             }
             Ok(FieldDefinition {

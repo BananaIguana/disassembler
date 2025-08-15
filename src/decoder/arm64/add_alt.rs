@@ -2,7 +2,7 @@ use {crate::decoder::register::Register, instruction_gen::make_instruction};
 
 make_instruction!(
     ADD_ALT,
-    check = "*00100010***********************",
+    check = "?00100010???????????????????????",
     sf = 31,
     op = 30,
     S = 29,
@@ -11,3 +11,10 @@ make_instruction!(
     Rn = 5:9,
     Rd = 0:4
 );
+
+#[cfg(test)]
+mod tests
+{
+    #[test]
+    fn add_x1_x1_0() {}
+}
