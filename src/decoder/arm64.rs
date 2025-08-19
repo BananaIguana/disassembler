@@ -1,5 +1,4 @@
 pub mod add;
-pub mod add_alt;
 pub mod adr;
 pub mod adrp;
 mod generator;
@@ -12,7 +11,7 @@ pub mod sub;
 use {
     crate::{
         decoder::{
-            arm64::{add::ADD, add_alt::ADD_ALT, movz::MOVZ, stp::STP, str::STR, stur::STUR, sub::SUB},
+            arm64::{add::ADD, movz::MOVZ, stp::STP, str::STR, stur::STUR, sub::SUB},
             instruction::Instruction,
             Decoder,
             DecoderOutput,
@@ -131,9 +130,9 @@ impl Decoder for Arm64Decoder
                 {
                     let instruction = match instruction
                     {
-                        n if (n & ADD_ALT::MASK) == ADD_ALT::CHECK => Instruction::ADD_ALT(ADD_ALT::from(instruction)),
-                        // "?00100010???????????????????????" => Instruction::ADD(ADD::from(instruction)),
-                        // "?10100010???????????????????????" => Instruction::SUB(SUB::from(instruction)),
+                        n if (n & ADD::MASK) == ADD::CHECK => Instruction::ADD(ADD::from(instruction)),
+                        n if (n & SUB::MASK) == SUB::CHECK => Instruction::SUB(SUB::from(instruction)),
+                        n if (n & MOVZ::MASK) == MOVZ::CHECK => Instruction::MOVZ(MOVZ::from(instruction)),
                         // "?010100010??????????????????????" => Instruction::STP(STP::from(instruction)), // Post-index
                         // "?010100110??????????????????????" => Instruction::STP(STP::from(instruction)), // Pre-index
                         // "?010100100??????????????????????" => Instruction::STP(STP::from(instruction)), // Signed offset
